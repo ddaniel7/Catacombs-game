@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Varázslatos katakomba</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amaranth&display=swap" rel="stylesheet">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amaranth&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <h1 id="title">
+    Varázslatos katakomba
+  </h1>
+  <div id="help">
+    <div id="controlHelp" hidden>Tipp: A nyilak fölé víve az egeret az extra szobát odahelyezheted, hogy lássad a sorral együtt. Jobb kattintásra forgathatod, bal kattintásra becsúsztathatod a sorba.</div>
+    <button id="story">Történet</button>
+    <button id="rules">Játékleírás</button>
+    <div class="container" id="story-text" hidden>
+      <p>
+        Nekeresdországban Nevenincs királynak egyik szeme sír, a másik nevet. Nevet, mert tündérszép lányának kérője
+        akadt, és sír, mert a kiváló kérőből nem egy, hanem több is van. Hát most hogyan döntse el, melyiknek adja lánya
+        kezét és fele királyságát? Gondolja kikéri udvari tanácsosa, Furfang véleményét. Az udvari tanácsos nevéhez illő
+        ötlettel áll elő: állítsák próba elé a kérőket, s aki a legrátermettebbnek bizonyul, az nyerje el a szépséges
+        királylány kezét. Van a várnak egy elvarázsolt katakombája, ahol a szobák helye folyamatosan változtatható.
+        Ebben rejtenek el kincseket, s az a kérő nyeri el a királylány kezét, aki a leghamarabb szedi össze a rábízott
+        kincseket.
+      </p>
+    </div>
+    <div class="container" id="rules-text" hidden>
+      <p>
+        A katakomba szobáit egy 7x7-es négyzetrács cellái jelképezik. Minden szobában adott, hogy hány falán van ajtó.
+        Ha két szomszédos szoba érintkező falán egy-egy ajtó van, akkor át lehet menni egyik szobából a másikba. A
+        négyzetrács páros sorait és oszlopait el lehet tolni, a többi szoba végig rögzített a játék során. Az
+        eltolásokkal az ajtókon keresztül utak nyílnak a szobák között, így lehet eljutni a kincsekhez. Mindegyik kérő
+        arra törekszik, hogy a katakomba szobáinak ötletes eltolásával eljusson a kincsekhez. Aki elsőként találja meg
+        mindahányat és kiindulópontjára sikeresen visszaérkezik az a nyertes.
+      </p>
+    </div>
+  </div>
+  <div id="controls">
+    Játékosok száma: <input type="number" id="player-count" min=1 max=4 value="2">
+    Játékosonkénti kincsek száma: <input type="number" id="treasure-count" min=1 max=24 value="2">
+    <button id="start">Start</button>
+    <button id="loadgame" hidden>Mentett játék folytatása</button>
+  </div>
+  <div class="container" id="field" hidden>
+    <div class="row">
+      <div class="col-xl-8">
+        <canvas width="630px" height="630px"></canvas>
+      </div>
+      <div class="col-xl-4">
+        <div class="mt-3"><span id='whosturn'></span></div>
+        <div class="mt-3"><button id="newgame" hidden>Új játék</button></div>
+        <div class="mt-3"><button id="savegame" hidden>Mentés</button></div>
+        <div class="row my-auto">
+          <div class="col-6">
+            <div class="card w-85 h-80 ms-auto" id="player-1" hidden>
+              <div class="card-body">
+                <h5 class="card-title">1. játékos</h5>
+                <h6 class="card-subtitle mb-2">Piros korong</h6>
+                <p class="card-text">Pontszám: <span class="points"></span></p>
+                <p class="card-text">Aktuális kincs: <span class="treasure"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card w-85 h-80 me-auto" id="player-2" hidden>
+              <div class="card-body">
+                <h5 class="card-title">2. játékos</h5>
+                <h6 class="card-subtitle mb-2">Kék korong</h6>
+                <p class="card-text">Pontszám: <span class="points"></span></p>
+                <p class="card-text">Aktuális kincs: <span class="treasure"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row my-auto">
+          <div class="col-6">
+            <div class="card w-85 h-80 ms-auto" id="player-3" hidden>
+              <div class="card-body">
+                <h5 class="card-title">3. játékos</h5>
+                <h6 class="card-subtitle mb-2">Zöld korong</h6>
+                <p class="card-text">Pontszám: <span class="points"></span></p>
+                <p class="card-text">Aktuális kincs: <span class="treasure"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card w-85 h-80 me-auto" id="player-4" hidden>
+              <div class="card-body">
+                <h5 class="card-title">4. játékos</h5>
+                <h6 class="card-subtitle mb-2">Lila korong</h6>
+                <p class="card-text">Pontszám: <span class="points"></span></p>
+                <p class="card-text">Aktuális kincs: <span class="treasure"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+  <script type="module" src="appstate.js"></script>
+</body>
+
+</html>

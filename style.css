@@ -1,0 +1,119 @@
+body {
+  background-color: #483D8B;
+  font-size: 1.4em;
+  text-align: center;
+  font-family: 'Amaranth', sans-serif;
+  color:white;
+}
+
+#title {
+  padding: 5px;
+  font-family: 'Amaranth', sans-serif;
+  font-size: 60px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 5px #9384f0;
+}
+
+#controls {
+  padding: 5px;
+}
+
+#controls button, #newgame, #savegame {
+  margin: 10px;
+  margin-left: 20px;
+  width: 90px;
+  height: 45px;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Amaranth', sans-serif;
+  border-radius: 10px;
+}
+
+#loadgame {
+  width: 250px !important;
+}
+
+#player-count {
+  margin-right: 20px;
+}
+
+#help {
+  margin: 0;
+}
+#help button {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Amaranth', sans-serif;
+  padding: 10px;
+  border-radius: 10px;
+  margin:10px
+}
+
+canvas {
+  background: black;
+  margin: 1rem auto;
+  display: block;
+}
+
+.card {
+  background-color: lightgrey;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color:black;
+  line-height: 1.4rem;
+}
+
+.currentplayer {
+  background-color: white;
+  transform:scale(1.05);
+  box-shadow:0 0 10px grey;
+}
+
+.winner {
+  background-color: gold;
+  transform:scale(1.05);
+  box-shadow:0 0 10px grey;
+}
+
+input {
+  width: 60px;
+}
+
+input:invalid {
+  box-shadow: 0 0 10px 1px red;
+}
+
+#help {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+#story-text, #rules-text {
+  font-size:1.3em;
+  line-height:1.3em;
+}
+
+#controlHelp {
+  position: absolute;
+  font-size: 0.9em;
+  top: 85px;
+  left: 60px;
+  width: 300px;
+  height: 120px;
+  text-align: left;
+}
+
+#player-1 .card-subtitle {
+  color: red;
+}
+
+#player-2 .card-subtitle {
+  color: blue;
+}
+
+#player-3 .card-subtitle {
+  color: green;
+}
+
+#player-4 .card-subtitle {
+  color: purple;
+}
